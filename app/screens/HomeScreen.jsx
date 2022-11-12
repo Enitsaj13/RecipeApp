@@ -1,4 +1,5 @@
 /* <-- dependencies --> */
+import { useContext } from 'react'
 import {
   Pressable,
   SafeAreaView,
@@ -8,24 +9,32 @@ import {
   Image,
 } from 'react-native'
 
-/* <-- styles --> */
-import styles from 'styles/home'
+/* <-- theme --> */
+import ThemeContext from 'theme/ThemeContext'
 
 /* <-- constants --> */
 import { CAROUSELData } from 'constants'
+
+/* <-- styles --> */
+import styles from 'styles/home'
 
 /* <-- components --> */
 import SearchRecipe from 'components/Search'
 import Carousel from 'components/Carousel'
 
 const HomeScreen = ({ navigation, item }) => {
+  /* <-- theme state --> */
+  const THEME = useContext(ThemeContext)
+
   return (
-    <SafeAreaView style={styles.mainSection}>
+    <SafeAreaView
+      style={[styles.mainSection, { backgroundColor: THEME.background }]}
+    >
       <View style={styles.header}>
         <View>
           <View style={{ flexDirection: 'row' }}>
-            <Text style={styles.greet}>Hello,</Text>
-            <Text style={styles.user}>Jastine 👋</Text>
+            <Text style={[styles.greet, { color: THEME.text }]}>Hello,</Text>
+            <Text style={[styles.user, { color: THEME.text }]}>Jastine 👋</Text>
           </View>
           <Text style={styles.asking}>What would you like to cook ?</Text>
         </View>

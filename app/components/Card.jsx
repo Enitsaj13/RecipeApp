@@ -1,25 +1,27 @@
 /* <-- dependencies --> */
 import Icon from 'react-native-vector-icons/Ionicons'
+import { useContext } from 'react'
 import { Image, Text, View } from 'react-native'
-import { TouchableHighlight } from 'react-native-gesture-handler'
+import { TouchableOpacity } from 'react-native-gesture-handler'
+
+/* <-- theme --> */
+import ThemeContext from 'theme/ThemeContext'
+import { COLORS, FONTS, SIZES } from 'theme'
 
 /* <-- styles --> */
 import styles from 'styles/menu'
 
-/* <-- constants --> */
-import { COLORS, FONTS, SIZES } from 'constants'
-
 const Card = ({ food, navigation }) => {
+  /* <-- theme state --> */
+  const THEME = useContext(ThemeContext)
   return (
-    <View style={styles.card}>
+    <View style={[styles.card, { backgroundColor: THEME.card }]}>
       <View style={{ alignItems: 'center', top: -40 }}>
-        <TouchableHighlight
-          underlayColor={COLORS.white}
-          activeOpacity={0.8}
+        <TouchableOpacity
           onPress={() => navigation.navigate('DetailsScreen', food)}
         >
           <Image source={food.image} style={{ height: 120, width: 120 }} />
-        </TouchableHighlight>
+        </TouchableOpacity>
       </View>
 
       <View
@@ -34,6 +36,7 @@ const Card = ({ food, navigation }) => {
           style={{
             fontSize: SIZES.medium,
             fontFamily: FONTS.light,
+            color: `${THEME.text}`,
           }}
         >
           {food.name}

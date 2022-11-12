@@ -56,8 +56,8 @@ const style = StyleSheet.create({
   imageContainer: {
     justifyContent: 'center',
     alignItems: 'center',
-    height: 280,
-    backgroundColor: COLORS.white,
+    alignSelf: 'center',
+    padding: 10,
   },
   img: {
     height: 220,

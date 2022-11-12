@@ -4,7 +4,10 @@ import { View, Text } from 'react-native'
 import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler'
 
 /* <-- constants --> */
-import { CATEGORYData, COLORS, SIZES, FONTS } from 'constants'
+import { CATEGORYData } from 'constants'
+
+/* <-- styles --> */
+import { COLORS, SIZES, FONTS } from 'theme'
 
 /* <-- styles --> */
 import styles from 'styles/menu'

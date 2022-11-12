@@ -1,3 +1,40 @@
+/* <-- dark mode and light mode --> */
+
+export const THEME = {
+  light: {
+    theme: 'light',
+    background: '#fff',
+    text: '#000',
+    border: '#f8fafc',
+    card: '#fff',
+    navigator: '#d1d5db',
+    tab: '#94a3b8',
+    globe: '#8b5cf6',
+    darkmode: '#fffbeb',
+    darkIcon: '#FEB65D',
+    switch: '#FEB65D',
+    switchTrack: '#F8F8F8',
+    activeNavigator: '#1f2937',
+    placeholder: '#BDBDBD',
+  },
+  dark: {
+    theme: 'dark',
+    background: '#1f2937',
+    text: '#fff',
+    border: '#2d3748',
+    card: '#2d3748',
+    navigator: '#475569',
+    tab: '#94a3b8',
+    globe: '#FEB65D',
+    darkmode: '#f5f3ff',
+    darkIcon: '#8b5cf6',
+    switch: '#F8F8F8',
+    switchTrack: '#8b5cf6',
+    activeNavigator: '#fff',
+    placeholder: '#94a3b8',
+  },
+}
+
 /* <-- colors --> */
 
 export const COLORS = {

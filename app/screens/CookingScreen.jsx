@@ -1,4 +1,5 @@
 /* <-- dependencies --> */
+import { useContext } from 'react'
 import { View, SafeAreaView, Text, ScrollView } from 'react-native'
 import YouTubePlayer from 'react-native-youtube-iframe'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
@@ -9,20 +10,24 @@ import { BackButton } from 'components/BackButton'
 /* <-- styles --> */
 import styles from 'styles/details'
 
-/* <-- constant --> */
-import { COLORS, FONTS, SIZES } from 'constants'
+/* <-- theme --> */
+import ThemeContext from 'theme/ThemeContext'
+import { FONTS, SIZES } from 'theme'
 
 const Video = ({ navigation, route }) => {
+  /* <-- theme state--> */
+  const THEME = useContext(ThemeContext)
+
   const item = route.params
   return (
     <>
       <SafeAreaView
         style={{
           flex: 1,
-          backgroundColor: COLORS.white,
+          backgroundColor: THEME.background,
         }}
       >
-        <View style={styles.header}>
+        <View style={[styles.header, { backgroundColor: THEME.background }]}>
           {/* <-- invoking the back button component -->  */}
           <BackButton navigation={navigation} />
 
@@ -30,11 +35,12 @@ const Video = ({ navigation, route }) => {
             style={{
               fontSize: SIZES.medium,
               fontFamily: FONTS.bold,
+              color: `${THEME.text}`,
             }}
           >
             Video
           </Text>
-          <Icon name='dots-vertical' size={25} color={COLORS.dark} />
+          <Icon name='dots-vertical' size={25} color={`${THEME.text}`} />
         </View>
         <View
           style={{
@@ -57,7 +63,7 @@ const Video = ({ navigation, route }) => {
             style={{
               fontSize: SIZES.large,
               fontFamily: FONTS.regular,
-              color: COLORS.dark,
+              color: `${THEME.text}`,
               textAlign: 'center',
               marginBottom: 20,
             }}
@@ -69,7 +75,7 @@ const Video = ({ navigation, route }) => {
               style={{
                 fontSize: SIZES.name,
                 fontFamily: FONTS.regular,
-                color: COLORS.dark,
+                color: `${THEME.text}`,
                 textAlign: 'justify',
                 letterSpacing: 0.8,
               }}

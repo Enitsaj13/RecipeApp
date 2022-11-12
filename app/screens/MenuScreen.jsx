@@ -1,5 +1,5 @@
 /* <-- dependencies --> */
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { SafeAreaView, View } from 'react-native'
 import { FlatList } from 'react-native-gesture-handler'
 
@@ -14,9 +14,15 @@ import CustomTab from 'navigation/CustomTab'
 import styles from 'styles/menu'
 
 /* <-- constants --> */
-import { FOODSData, BEVERAGESData, DESSERTSData, COLORS } from 'constants'
+import { FOODSData, BEVERAGESData, DESSERTSData } from 'constants'
+
+/* <-- theme --> */
+import ThemeContext from 'theme/ThemeContext'
 
 const HomeScreen = ({ navigation }) => {
+  /* <-- theme state --> */
+  const THEME = useContext(ThemeContext)
+
   const [category, setCategory] = useState('All')
   const [dataList, setDataList] = useState([
     ...FOODSData,
@@ -53,7 +59,7 @@ const HomeScreen = ({ navigation }) => {
       <SafeAreaView
         style={{
           flex: 1,
-          backgroundColor: COLORS.white,
+          backgroundColor: THEME.background,
         }}
       >
         {/* <-- invoked the header component -->  */}

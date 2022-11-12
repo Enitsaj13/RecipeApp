@@ -1,6 +1,6 @@
 /* <-- dependencies --> */
+import { useContext } from 'react'
 import 'react-native-gesture-handler'
-import React from 'react'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 import IoIcon from 'react-native-vector-icons/Ionicons'
 import UserIcon from 'react-native-vector-icons/FontAwesome'
@@ -11,11 +11,10 @@ import HomeScreen from 'screens/HomeScreen'
 import FavoriteScreen from 'screens/FavoriteScreen'
 import MenuScreen from 'screens/MenuScreen'
 import ProfileScreen from 'screens/ProfileScreen'
+import Settings from 'screens/Settings'
 
-import Darkmode from 'components/Darkmode'
-
-/* <-- styles --> */
-import { COLORS } from 'constants'
+/* <-- theme --> */
+import ThemeContext from 'theme/ThemeContext'
 
 const Tab = createBottomTabNavigator()
 
@@ -41,24 +40,6 @@ const Screen = [
   },
   {
     name: 'Add',
-    component: Darkmode,
-    options: {
-      tabBarIcon: ({ color }) => (
-        <IoIcon name='add-circle' size={24} color={color} />
-      ),
-    },
-  },
-  // {
-  //   name: 'Favorite',
-  //   component: FavoriteScreen,
-  //   options: {
-  //     tabBarIcon: ({ color }) => (
-  //       <IoIcon name='heart' size={24} color={color} />
-  //     ),
-  //   },
-  // },
-  {
-    name: 'Profile',
     component: ProfileScreen,
     options: {
       tabBarIcon: ({ color }) => (
@@ -66,9 +47,30 @@ const Screen = [
       ),
     },
   },
+  {
+    name: 'Favorite',
+    component: FavoriteScreen,
+    options: {
+      tabBarIcon: ({ color }) => (
+        <IoIcon name='heart' size={24} color={color} />
+      ),
+    },
+  },
+  {
+    name: 'Settings',
+    component: Settings,
+    options: {
+      tabBarIcon: ({ color }) => (
+        <IoIcon name='settings' size={24} color={color} />
+      ),
+    },
+  },
 ]
 
 const BottomNavigator = () => {
+  /* <-- theme state --> */
+  const THEME = useContext(ThemeContext)
+
   return (
     <Tab.Navigator
       screenOptions={{
@@ -76,8 +78,8 @@ const BottomNavigator = () => {
         headerTitle: '',
 
         tabBarShowLabel: false,
-        tabBarActiveTintColor: COLORS.primary,
-        tabBarInactiveTintColor: COLORS.grey,
+        tabBarActiveTintColor: `${THEME.activeNavigator}`,
+        tabBarInactiveTintColor: `${THEME.navigator}`,
 
         tabBarItemStyle: {
           borderRadius: 14,

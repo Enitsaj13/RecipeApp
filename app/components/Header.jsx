@@ -1,9 +1,14 @@
-import React from 'react'
-import { View, TouchableOpacity } from 'react-native'
+import { useContext } from 'react'
+import { View } from 'react-native'
 import { BackButton } from 'components/BackButton'
-import { COLORS } from 'constants'
+
+/* <-- theme --> */
+import ThemeContext from 'theme/ThemeContext'
 
 const Header = ({ navigation }) => {
+  /* <-- theme state --> */
+  const THEME = useContext(ThemeContext)
+
   return (
     <View
       style={{
@@ -12,7 +17,7 @@ const Header = ({ navigation }) => {
         alignItems: 'center',
         marginHorizontal: 20,
         justifyContent: 'space-between',
-        backgroundColor: COLORS.white,
+        backgroundColor: `${THEME.background}`,
       }}
     >
       <BackButton navigation={navigation} />

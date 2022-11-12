@@ -1,5 +1,5 @@
 /* <-- dependencies --> */
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { View, Image, useWindowDimensions, Text } from 'react-native'
 import Animated, {
   useSharedValue,
@@ -10,7 +10,7 @@ import Animated, {
 } from 'react-native-reanimated'
 
 /* <-- constant--> */
-import { COLORS } from 'constants'
+import { COLORS } from 'theme'
 
 /* <-- component --> */
 import { ToastMessage } from 'components/Toast'
@@ -83,7 +83,8 @@ const Carousel = ({ data, autoPlay }) => {
                 style,
                 styles.imageContainer,
                 {
-                  backgroundColor: index % 2 === 0 ? COLORS.cahel : COLORS.lightBlue,
+                  backgroundColor:
+                    index % 2 === 0 ? COLORS.cahel : COLORS.lightBlue,
                 },
               ]}
             >

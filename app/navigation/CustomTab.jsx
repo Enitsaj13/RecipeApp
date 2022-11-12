@@ -1,13 +1,21 @@
 /* <-- dependencies --> */
+import { useContext } from 'react'
 import { Text, View, TouchableOpacity } from 'react-native'
 
 /* <-- styles --> */
 import styles from 'styles/menu'
 
 /* <-- constants --> */
-import { CATEGORYData, COLORS, FONTS, SIZES } from 'constants'
+import { CATEGORYData } from 'constants'
+
+/* <-- theme --> */
+import ThemeContext from 'theme/ThemeContext'
+import { COLORS, FONTS, SIZES } from 'theme'
 
 const CustomTab = ({ category, setCategoryFilter }) => {
+  /* <-- state theme --> */
+  const THEME = useContext(ThemeContext)
+
   return (
     <View style={styles.listTab}>
       {CATEGORYData.map((item) => (
@@ -21,9 +29,7 @@ const CustomTab = ({ category, setCategoryFilter }) => {
         >
           <Text
             style={{
-              color: `${
-                category === item.category ? COLORS.white : COLORS.grey
-              }`,
+              color: `${category === item.category ? COLORS.white : THEME.tab}`,
               fontSize: SIZES.font,
               fontFamily: FONTS.light,
             }}

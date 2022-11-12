@@ -17,12 +17,13 @@ const style = StyleSheet.create({
     alignItems: 'center',
     borderRadius: 10,
     backgroundColor: COLORS.white,
-    shadowColor: COLORS.grey,
+    shadowColor: COLORS.dark,
     shadowOffset: {
       width: 0,
-      height: 2,
+      height: 1,
     },
-    shadowOpacity: 0.2,
+    shadowOpacity: 0.1,
+    elevation: 5,
   },
 
   btnMinus: {

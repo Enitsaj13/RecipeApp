@@ -1,9 +1,14 @@
+/* <-- dependencies --> */
+import { useContext } from 'react'
 import { View } from 'react-native'
 import Icon from 'react-native-vector-icons/Entypo'
 
-import { COLORS } from 'constants'
+/* <-- theme --> */
+import ThemeContext from 'theme/ThemeContext'
 
 export const BackButton = ({ navigation }) => {
+  /* <-- theme state --> */
+  const THEME = useContext(ThemeContext)
   return (
     <>
       <View
@@ -13,15 +18,15 @@ export const BackButton = ({ navigation }) => {
           borderWidth: 1,
           padding: 8,
           marginRight: 4,
-          backgroundColor: COLORS.white,
-          borderColor: COLORS.white,
+          borderColor: THEME.card,
+          backgroundColor: THEME.card,
         }}
       >
         <Icon
           name='chevron-thin-left'
           size={20}
           onPress={navigation.goBack}
-          color={COLORS.dark}
+          color={`${THEME.text}`}
         />
       </View>
     </>

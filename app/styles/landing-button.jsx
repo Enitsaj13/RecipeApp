@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
     paddingLeft: 20,
   },
   secondayBtnContainer: {
-    backgroundColor: COLORS.dark,
+    backgroundColor: COLORS.primary,
     height: 50,
     borderRadius: 20,
     justifyContent: 'center',

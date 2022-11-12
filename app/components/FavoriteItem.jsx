@@ -1,29 +1,34 @@
 /* <-- dependencies --> */
-import React from 'react'
-import { View, Text, Image, TouchableHighlight } from 'react-native'
+import { useContext } from 'react'
+import { View, Text, Image } from 'react-native'
+import { TouchableOpacity } from 'react-native-gesture-handler'
 
-/* <-- constants --> */
-import { COLORS } from 'constants'
+/* <-- theme --> */
+import ThemeContext from 'theme/ThemeContext'
 
 /* <-- styles --> */
 import styles from 'styles/favorite'
 
 const FavoriteItem = ({ item, navigation }) => {
+  /* <-- theme state --> */
+  const THEME = useContext(ThemeContext)
+
   return (
-    <TouchableHighlight
-      underlayColor={COLORS.white}
-      activeOpacity={0.9}
-      onPress={() => navigation.navigate('DetailsScreen', item)}
-    >
-      <View style={styles.faveScreen}>
+    <View style={[styles.faveScreen, { backgroundColor: `${THEME.card}` }]}>
+      <TouchableOpacity
+        activeOpacity={0.8}
+        onPress={() => navigation.navigate('DetailsScreen', item)}
+      >
         <Image source={item.image} style={styles.img} />
-        <View style={styles.favNameContainer}>
-          <Text style={styles.favName}>{item.name}</Text>
-          <Text style={styles.favVersion}>{item.time}</Text>
-          <Text style={styles.favVersion}>{item.capacity}</Text>
-        </View>
+      </TouchableOpacity>
+      <View style={styles.favNameContainer}>
+        <Text style={[styles.favName, { color: `${THEME.text}` }]}>
+          {item.name}
+        </Text>
+        <Text style={styles.favVersion}>{item.time}</Text>
+        <Text style={styles.favVersion}>{item.capacity}</Text>
       </View>
-    </TouchableHighlight>
+    </View>
   )
 }
 

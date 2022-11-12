@@ -1,46 +1,41 @@
-import React, { useState, useEffect } from 'react'
-import { View, Text, Switch, StyleSheet, Appearance } from 'react-native'
+import { StyleSheet, Text, View, Switch } from 'react-native'
+import React, { useState, useContext } from 'react'
 
-import { COLORS } from 'constants'
+import { EventRegister } from 'react-native-event-listeners'
 
-const App = () => {
-  const [colorScheme, setColorScheme] = useState(Appearance.getColorScheme())
+import ThemeContext from 'theme/ThemeContext'
 
-  useEffect(() => {
-    Appearance.addChangeListener(({ colorScheme }) => {
-      setColorScheme(colorScheme)
-    })
-  }, [])
-
-  const isDarkMode = colorScheme === 'dark'
+const Darkmode = () => {
+  const theme = useContext(ThemeContext)
+  const [mode, setMode] = useState(false)
 
   return (
-    <View style={[styles.container, isDarkMode && { backgroundColor: '#000' }]}>
-      <Text style={[styles.text, isDarkMode && { color: COLORS.white }]}>
-        Dark Mode
-      </Text>
+    <View style={[styles.container, { backgroundColor: theme.background }]}>
+      <Text style={[styles.text, { color: theme.text }]}>Dark Mode</Text>
+
       <Switch
-        trackColor={{ false: COLORS.dark, true: COLORS.dark }}
-        ios_backgroundColor='#3e3e3e'
-        value={isDarkMode}
+        value={mode}
         onValueChange={(value) => {
-          setColorScheme(value ? 'dark' : 'light')
+          setMode(value)
+          EventRegister.emit('themeChanged', value)
         }}
       />
     </View>
   )
 }
 
+export default Darkmode
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
   },
   text: {
     fontSize: 20,
+    fontWeight: 'bold',
     marginBottom: 20,
   },
 })
-
-export default App
